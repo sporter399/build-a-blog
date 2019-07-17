@@ -21,7 +21,18 @@ class Blog(db.Model):
         self.name = name
        
 
+@app.route('/', methods=['POST', 'GET'])
+def add_title():
 
+     if request.method == 'POST':
+        title = request.form['title']
+        print('title here')
+        new_title = Blog(title)
+        db.session.add(new_title)
+        db.session.commit()
+        
+        return render_template('blog.html',title="Title for your new blog:")
+"""
 @app.route('/blogdisplay', methods=['POST', 'GET'])
 def blog_display():
 
@@ -30,26 +41,13 @@ def blog_display():
 
     
     return redirect('/')
-     
+"""
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
 
-
-    if request.method == 'POST':
-        title = request.form['title']
-        print("title here")
-        new_title = Blog(title)
-        blog = request.form['blog']
-        new_blog = Blog(blog)
-        db.session.add(new_title)
-        db.session.commit()
-        db.session.add(new_blog)
-        db.session.commit()
-        
-
-    
     return render_template('blog.html',title="Title for your new blog:")
+  
 
 
 
