@@ -21,7 +21,7 @@ class Blog(db.Model):
         self.name = name
        
 
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/blog', methods=['POST', 'GET'])
 def add_title():
 
      if request.method == 'POST':
