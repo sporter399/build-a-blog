@@ -12,8 +12,32 @@
 
     <hr />
 
+    
+    <form method='post' action="/blog">
+        <label>
+            Your blog:
+            <input type="text" name='blog' />
+        </label>
+        <input type="submit" value="Add blog"/>
+        
+    </form>
+
+   
+
+    {% if titles|length == 0 %}
+    <p>No titles yet</p>
+    {% else %}
+
+    <ul>
+        {% for title in titles %}
+        <li>{{title.name}}</li>
+        {% endfor %}
+    </ul>
+
+    {% endif %}
 
 
+<!--
 <form method="post" action="/blog">
     <label> 
         Your new blog
@@ -21,6 +45,7 @@
         <input type="submit" value="Add Entry"/>
     </label>
 </form>
+-->
 
 
 <ul>

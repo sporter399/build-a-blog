@@ -12,36 +12,46 @@ db = SQLAlchemy(app)
 class Blog(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(120))
-    titles = db.relationship('Title')
-    name = db.Column(db.String(120))
-    blogs = db.relationship('Blog')
+    title = db.Column(db.String(120))
+    blog = db.Column(db.String(120))
+   
     
-    def __init__(self):
-        self.name = name
+    def __init__(self, title, blog):
+       self.title = title
+       self.blog = blog
+
+    def __repr__(self):
+        return ('%r' % self.title, '%r' % self.blog)
+        
        
 
-@app.route('/blog', methods=['POST', 'GET'])
+methods=['POST', 'GET']
 def add_title():
 
      if request.method == 'POST':
         title = request.form['title']
-        print('title here')
         new_title = Blog(title)
         db.session.add(new_title)
         db.session.commit()
+
         
-        return render_template('blog.html',title="Title for your new blog:")
-"""
-@app.route('/blogdisplay', methods=['POST', 'GET'])
-def blog_display():
+        titles = Blog.query.all()
+        return render_template('addconfirm.html',title=title)
+
+@app.route('/blog', methods=['POST', 'GET'])
+def add_blog():
+
+     if request.method == 'POST':
+        blog = request.form['blog']
+        new_blog = Blog(blog)
+        db.session.add(new_blog)
+        db.session.commit()
+
+        
+        blogs = Blog.query.all()
+        return render_template('addconfirm.html',title=title, blog=blog)
 
 
-    # all this page does is display
-
-    
-    return redirect('/')
-"""
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
