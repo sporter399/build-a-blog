@@ -38,6 +38,7 @@ def add_blog():
         db.session.commit()
       
         
+        
         return render_template('addconfirm.html',title=title, blog=blog)
 
 
@@ -46,9 +47,9 @@ def add_blog():
 def index():
 
     
-    titles = Blog.query.filter_by(title=title).all()
-    blogs = Blog.query.filter_by(blog=blog).all()
-    return render_template('blog.html',title="Title for your new blog:", blog="Your blog", titles=titles, blogs=blogs)
+    new_blog_objects = Blog.query.all()
+    
+    return render_template('blog.html',title="Title for your new blog:", blog="Your blog", new_blog_objects=new_blog_objects)
   
 
 
