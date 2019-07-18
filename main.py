@@ -27,10 +27,12 @@ class Blog(db.Model):
 
 methods=['POST', 'GET']
 def add_title():
-
+     
      if request.method == 'POST':
+        print("do i execute")
         title = request.form['title']
         new_title = Blog(title)
+        
         db.session.add(new_title)
         db.session.commit()
 
@@ -42,7 +44,9 @@ def add_title():
 def add_blog():
 
      if request.method == 'POST':
+        print("print here")
         blog = request.form['blog']
+        print(blog)
         new_blog = Blog(blog)
         db.session.add(new_blog)
         db.session.commit()
@@ -56,7 +60,7 @@ def add_blog():
 @app.route('/', methods=['POST', 'GET'])
 def index():
 
-    return render_template('blog.html',title="Title for your new blog:")
+    return render_template('blog.html',title="Title for your new blog:", blog="Your blog")
   
 
 
