@@ -30,18 +30,6 @@
     <p>No titles yet</p>
     {% else %}
 
-    <ul>
-        {% for title in titles %}
-        <li>{{title.name}}</li>
-        {% endfor %}
-    </ul>
-
-    {% endif %}
-
-
-
-
-
 <ul>
         {% for title in titles %}
         <li>{{title}}
@@ -50,6 +38,7 @@
             </form>
         </li>
         {% endfor %}
+        {% endif %}
     </ul>
 
 

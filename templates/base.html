@@ -1,5 +1,7 @@
 <!doctype html>
 <html>
+
+<!--
     <head>
         <title>{{title}}</title>
         <title>{{blog}}</title>
@@ -9,20 +11,39 @@
             }
         </style>
     </head>
-<body>
+-->
+
+
+
+
+    <body>
 
     
 
-    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            <ul>
+            {% for category,message in messages %}
+                <li class="{{category}}">{{message}}</li>
+                
+            {% endfor %}
+            </ul>
+        {% endwith %}
+
+       
+
+    
+        {% block content %}
         <ul>
-        {% for category,message in messages %}
-            <li class="{{category}}">{{message}}</li>
-        {% endfor %}
+            {% for title in titles %}
+            <li>{{title}}
+                <form method="POST" style="display:inline-block;">
+                        
+                </form>
+            </li>
+            {% endfor %}
+            
         </ul>
-    {% endwith %}
-
-    {% block content %}
-    {% endblock %}
-
-</body>
+        {% endblock %}
+    
+    </body>
 </html>
