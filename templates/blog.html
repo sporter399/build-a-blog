@@ -26,16 +26,16 @@
 
    
     
-    {% if new_blog_objects|length == 0 %}
+    {% if titles|length == 0 %}
     <p>No titles yet</p>
     {% else %}
 
 <ul>
-        {% for blog in new_blog_objects %}
-        <li>{{blog}}
-            <form method="POST" style="display:inline-block;">
-                    
-            </form>
+
+        
+        {% for title in titles %}
+        <li>{{title}}
+            
         </li>
         {% endfor %}
         {% endif %}
