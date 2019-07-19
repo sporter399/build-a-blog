@@ -21,11 +21,7 @@ class Blog(db.Model):
     def __init__(self, title, blog):
        self.title = title
        self.blog = blog
-"""
-    def __repr__(self):
-        return ('%r' % self.title, '%r' % self.blog)
-"""
-        
+
 
 @app.route('/blog', methods=['POST', 'GET'])
 def add_blog():
@@ -47,18 +43,13 @@ def add_blog():
 @app.route('/', methods=['POST', 'GET'])
 def index():
 
-    """
-    note to self: below is the html code i found online which i thought was commented out in html:
-    <li><a href="/{{kitchen_location[0]}}/">{{kitchen_location[0]}}</a></li>
-    """
     
     blogs = db.session.query(Blog).all()
 
     titles = [blog.title for blog in blogs]
-
-    print(titles)
+    entries = [blog.blog for blog in blogs]
     
-    return render_template('blog.html',title="Title for your new blog:", blog="Your blog", titles=titles)
+    return render_template('blog.html',title="Title for your new blog:", blog="Your blog", titles=titles, entries=entries)
   
 
 

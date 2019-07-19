@@ -30,7 +30,7 @@
     <p>No titles yet</p>
     {% else %}
 
-<ul>
+        <ul>
 
         
         {% for title in titles %}
@@ -38,8 +38,22 @@
             
         </li>
         {% endfor %}
+        
+    </ul>
+
+    
+    <ul>
+
+        
+        {% for blog in entries %}
+        <li>{{blog}}
+            
+        </li>
+        {% endfor %}
         {% endif %}
     </ul>
+
+    
 
 
     
