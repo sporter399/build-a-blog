@@ -26,31 +26,13 @@
 
    
     
-    {% if titles|length == 0 %}
-    <p>No titles yet</p>
-    {% else %}
-
-        <ul>
-
-        
-        {% for title in titles %}
-        <li>{{title}}
-            
-        </li>
-        {% endfor %}
-        
-    </ul>
-
     
-    <ul>
-
-        
-        {% for blog in entries %}
-        <li>{{blog}}
+        {% for title in loop_queries %}
+        <li>{{loop_queries.title}}
             
         </li>
         {% endfor %}
-        {% endif %}
+        
     </ul>
 
     

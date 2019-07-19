@@ -1,6 +1,7 @@
 from flask import Flask, request, redirect, render_template, session
 from flask_sqlalchemy import SQLAlchemy
 import os
+import sqlite3
 
 app = Flask(__name__)
 
@@ -11,9 +12,11 @@ app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
 
 
+
+
 class Blog(db.Model):
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)#how to return this with a title and blog?
     title = db.Column(db.String(120))
     blog = db.Column(db.String(120))
    
@@ -33,6 +36,12 @@ def add_blog():
         new_blog_object = Blog(title, blog)
         db.session.add(new_blog_object)
         db.session.commit()
+        
+
+
+        print("this is blogobjectid:   " + str(new_blog_object.id))   
+
+        
       
         
         
@@ -45,11 +54,24 @@ def index():
 
     
     blogs = db.session.query(Blog).all()
-
+    """
+    ids = [blog.id for blog in blogs]
     titles = [blog.title for blog in blogs]
     entries = [blog.blog for blog in blogs]
+
+    test_query = Blog.query.filter_by(id=1).first()
+    print("this is testquery:   "  + str(test_query))
+    """
+    counter = 1
+    loop_queries = []
+    for objects in blogs:
+      loop_query = Blog.query.filter_by(id=counter).first()
+      counter += 1
+      loop_queries.append(loop_query)
+      print("This is loop query"  + str(loop_query))
     
-    return render_template('blog.html',title="Title for your new blog:", blog="Your blog", titles=titles, entries=entries)
+    
+    return render_template('blog.html',title="Title for your new blog:", blog="Your blog", loop_queries=loop_queries)
   
 
 
