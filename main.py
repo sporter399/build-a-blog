@@ -36,39 +36,28 @@ def add_blog():
         new_blog_object = Blog(title, blog)
         db.session.add(new_blog_object)
         db.session.commit()
-        
-
-
-        print("this is blogobjectid:   " + str(new_blog_object.id))   
-
-        
       
-        
-        
         return render_template('addconfirm.html',title=title, blog=blog)
 
+@app.route('/test{}', methods=['POST', 'GET'])
+def display_blog():
 
+    print("something")
+
+    return render_template('addconfirm.html')
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
 
     
     blogs = db.session.query(Blog).all()
-    """
-    ids = [blog.id for blog in blogs]
-    titles = [blog.title for blog in blogs]
-    entries = [blog.blog for blog in blogs]
-
-    test_query = Blog.query.filter_by(id=1).first()
-    print("this is testquery:   "  + str(test_query))
-    """
+    
     counter = 1
     loop_queries = []
     for objects in blogs:
       loop_query = Blog.query.filter_by(id=counter).first()
       counter += 1
       loop_queries.append(loop_query)
-      print("This is loop query"  + str(loop_query))
     
     
     return render_template('blog.html',title="Title for your new blog:", blog="Your blog", loop_queries=loop_queries)

@@ -25,10 +25,10 @@
     </form>
 
    
-    
+  
     
         {% for frog in loop_queries %}
-        <li>{{frog.title, frog.blog}}
+        <li><a href="/test{{frog.id}}">{{frog.title}}</a> {{frog.blog}}
             
         </li>
         {% endfor %}
