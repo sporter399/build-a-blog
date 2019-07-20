@@ -29,6 +29,8 @@ class Blog(db.Model):
 @app.route('/blog', methods=['POST', 'GET'])
 def add_blog():
 
+      
+
       if request.method == 'POST':
         
         title = request.form['title']
@@ -39,12 +41,19 @@ def add_blog():
       
         return render_template('addconfirm.html',title=title, blog=blog)
 
-@app.route('/test', methods=['POST', 'GET'])
-def display_blog():
+     
 
-    print("something")
+@app.route('/display/<int:post_id>', methods=['POST', 'GET'])
+def display(post_id):
 
-    return render_template('addconfirm.html')
+      display_list = []
+
+      displayed_blog_object = Blog.query.filter_by(id=post_id).first()
+      display_list.append(displayed_blog_object)
+      #return 'Post %d' % post_id
+
+      return render_template('blogdisplay.html', display_list=display_list)
+
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
