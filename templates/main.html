@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+
+
+
+
+<h1><a href="/">Main Blog Page</a> <a href="/blog">Add Blog Entry</a> </h1>
+        
+   
+    
+   
+
+
+    <body>
+
+            {% for frog in loop_queries %}
+            <p>disllay me please</p>
+            <li><a href="/display/{{frog.id}}">{{frog.title}}</a> {{frog.blog}}
+                  
+            </li>
+            {% endfor %}
+
+
+
+    </body>
+
+{% endblock %}

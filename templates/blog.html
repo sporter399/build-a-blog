@@ -2,7 +2,7 @@
 
 {% block content %}
 
-
+<p>this is blog.html</p>
     <h1>Add a Blog Entry</h1>
     <form method='post' action="/blog">
         <label>
@@ -27,17 +27,7 @@
    
   
     
-        {% for frog in loop_queries %}
-        <li><a href="/display/{{frog.id}}">{{frog.title}}</a> {{frog.blog}}
-            
-        </li>
-        {% endfor %}
         
-    </ul>
-
-    
-
-
-    
+        
 
 {% endblock %}

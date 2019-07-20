@@ -11,6 +11,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///{}".format(os.path.join(proje
 app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
 
+"""
+main page looks good, now add blog entry needs the textboxes etc to actually do it
+"""
 
 
 
@@ -30,17 +33,17 @@ class Blog(db.Model):
 def add_blog():
 
       
-
-      if request.method == 'POST':
+     #if request.method == 'GET':
+            
+            title = request.form['title']
+            blog = request.form['blog'] 
+            new_blog_object = Blog(title, blog)
+            db.session.add(new_blog_object)
+            db.session.commit()
+            
+            #return render_template('addconfirm.html',title=title, blog=blog)
         
-        title = request.form['title']
-        blog = request.form['blog'] 
-        new_blog_object = Blog(title, blog)
-        db.session.add(new_blog_object)
-        db.session.commit()
-      
-        return render_template('addconfirm.html',title=title, blog=blog)
-
+            return render_template('blog.html',title="Title for your new blog:", blog="Your blog")
      
 
 @app.route('/display/<int:post_id>', methods=['POST', 'GET'])
@@ -59,17 +62,18 @@ def display(post_id):
 def index():
 
     
-    blogs = db.session.query(Blog).all()
+      blogs = db.session.query(Blog).all()
     
-    counter = 1
-    loop_queries = []
-    for objects in blogs:
-      loop_query = Blog.query.filter_by(id=counter).first()
-      counter += 1
-      loop_queries.append(loop_query)
+      counter = 1
+      loop_queries = []
+      for objects in blogs:
+            loop_query = Blog.query.filter_by(id=counter).first()
+            counter += 1
+            loop_queries.append(loop_query)
     
     
-    return render_template('blog.html',title="Title for your new blog:", blog="Your blog", loop_queries=loop_queries)
+      return render_template('main.html', loop_queries=loop_queries)
+    #return render_template('blog.html',title="Title for your new blog:", blog="Your blog", loop_queries=loop_queries)
   
 
 

@@ -13,10 +13,22 @@
     </head>
 -->
 
+    <h1>
+        <a href="/">Main Blog Page</a>
+    </h1>
 
+    <h2>
+        <a href="/blog">Add Blog Entry</a>
+    </h2>
 
 
     <body>
+
+            {% for frog in loop_queries %}
+            <li><a href="/display/{{frog.id}}">{{frog.title}}</a> {{frog.blog}}
+                
+            </li>
+            {% endfor %}
 
         
 
@@ -31,7 +43,7 @@
 
        
 
-    
+ <!--   
         {% block content %}
         <ul>
             {% for title in titles %}
@@ -44,6 +56,8 @@
             
         </ul>
         {% endblock %}
+
+    -->
     
     </body>
 </html>
