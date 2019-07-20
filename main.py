@@ -39,7 +39,7 @@ def add_blog():
       
         return render_template('addconfirm.html',title=title, blog=blog)
 
-@app.route('/test{}', methods=['POST', 'GET'])
+@app.route('/test', methods=['POST', 'GET'])
 def display_blog():
 
     print("something")

@@ -28,7 +28,7 @@
   
     
         {% for frog in loop_queries %}
-        <li><a href="/test{{frog.id}}">{{frog.title}}</a> {{frog.blog}}
+        <li><a href="/test?id={{frog.id}}">{{frog.title}}</a> {{frog.blog}}
             
         </li>
         {% endfor %}
