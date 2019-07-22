@@ -12,11 +12,9 @@ app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
 
 
-
-
 class Blog(db.Model):
 
-    id = db.Column(db.Integer, primary_key=True)#how to return this with a title and blog?
+    id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(120))
     blog = db.Column(db.String(120))
    
@@ -26,31 +24,26 @@ class Blog(db.Model):
        self.blog = blog
 
 
+
 @app.route('/test', methods=['POST', 'GET'])
 def test():
-      """
-      i'm still stuck on the href(after the click on the link to add blog entry),
-      won't follow through with POST request. and changing it to GET doesn't help.
-      """
+     
+      return render_template('blogenter.html',title="Title for your new blog:", blog="Your blog")       
+
+@app.route('/addconfirm', methods=['POST', 'GET'])
+def addconfirm():
       
-       
-       
       if request.method == 'POST':
-        print("execute")
-        
+       
         title = request.form['title']
         blog = request.form['blog'] 
         new_blog_object = Blog(title, blog)
         db.session.add(new_blog_object)      
         db.session.commit()
 
+      return render_template('addconfirm.html', title=title, blog=blog)       
 
-      else:
-            print("reqeust method is not post")
-
-      return render_template('blogenter.html',title="Title for your new blog:", blog="Your blog")       
-
-@app.route('/display/<int:post_id>', methods=['POST', 'GET'])
+@app.route('/display/<int:post_id>', methods=['POST', 'GET'])#this still doesn't look that good right now
 def display(post_id):
 
       display_list = []
@@ -58,14 +51,12 @@ def display(post_id):
       displayed_blog_object = Blog.query.filter_by(id=post_id).first()
       display_list.append(displayed_blog_object)
      
-
       return render_template('blogdisplay.html', display_list=display_list)
 
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
 
-    
     blogs = db.session.query(Blog).all()
     
     counter = 1
