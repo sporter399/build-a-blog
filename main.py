@@ -24,23 +24,7 @@ class Blog(db.Model):
     def __init__(self, title, blog):
        self.title = title
        self.blog = blog
-"""
 
-@app.route('/blog', methods=['POST', 'GET'])
-def add_blog():
-
-     
-
-      if request.method == 'POST':
-        
-        title = request.form['title']
-        blog = request.form['blog'] 
-        new_blog_object = Blog(title, blog)
-        db.session.add(new_blog_object)
-        db.session.commit()
-      
-        return render_template('blogenter.html')
-"""
 
 @app.route('/test', methods=['POST', 'GET'])
 def test():
@@ -57,8 +41,6 @@ def test():
         title = request.form['title']
         blog = request.form['blog'] 
         new_blog_object = Blog(title, blog)
-        #entered_blog_id = Blog.query.filter_by(title=title).first()
-        #print("this is enteredid:  " + entered_blog_id)
         db.session.add(new_blog_object)      
         db.session.commit()
 
@@ -75,7 +57,7 @@ def display(post_id):
 
       displayed_blog_object = Blog.query.filter_by(id=post_id).first()
       display_list.append(displayed_blog_object)
-      #return 'Post %d' % post_id
+     
 
       return render_template('blogdisplay.html', display_list=display_list)
 
