@@ -24,12 +24,12 @@ class Blog(db.Model):
     def __init__(self, title, blog):
        self.title = title
        self.blog = blog
-
+"""
 
 @app.route('/blog', methods=['POST', 'GET'])
 def add_blog():
 
-      
+     
 
       if request.method == 'POST':
         
@@ -39,9 +39,34 @@ def add_blog():
         db.session.add(new_blog_object)
         db.session.commit()
       
-        return render_template('addconfirm.html',title=title, blog=blog)
+        return render_template('blogenter.html')
+"""
 
-     
+@app.route('/test', methods=['POST', 'GET'])
+def test():
+      """
+      i'm still stuck on the href(after the click on the link to add blog entry),
+      won't follow through with POST request. and changing it to GET doesn't help.
+      """
+      
+       
+       
+      if request.method == 'POST':
+        print("execute")
+        
+        title = request.form['title']
+        blog = request.form['blog'] 
+        new_blog_object = Blog(title, blog)
+        #entered_blog_id = Blog.query.filter_by(title=title).first()
+        #print("this is enteredid:  " + entered_blog_id)
+        db.session.add(new_blog_object)      
+        db.session.commit()
+
+
+      else:
+            print("reqeust method is not post")
+
+      return render_template('blogenter.html',title="Title for your new blog:", blog="Your blog")       
 
 @app.route('/display/<int:post_id>', methods=['POST', 'GET'])
 def display(post_id):
@@ -69,7 +94,7 @@ def index():
       loop_queries.append(loop_query)
     
     
-    return render_template('blog.html',title="Title for your new blog:", blog="Your blog", loop_queries=loop_queries)
+    return render_template('blog.html',loop_queries=loop_queries)
   
 
 
