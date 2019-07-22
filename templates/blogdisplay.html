@@ -5,13 +5,10 @@
 <h1><a href="/">Main Blog Page</a> <a href="/test">Add Blog Entry</a> </h1> 
 
         
-{% for cat in display_list %}
+{% for var in display_list %}
               
-        <li style="list-style-type:none;">{{cat.title}}</li>
-
-        </hr>   
-
-        <li style="list-style-type:none;">{{cat.blog}}</li>
+        <li style="font-size: 30px; list-style-type:none;"align="center">{{var.title}}</li>
+        <li style="list-style-type:none;">{{var.blog}}</li>
 
         {% endfor %}
 

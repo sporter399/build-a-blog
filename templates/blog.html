@@ -9,8 +9,15 @@
    
   
     
-        {% for frog in loop_queries %}
-        <li style="list-style-type:none;"><a href="/display/{{frog.id}}">{{frog.title}}</a> {{frog.blog}}</li>
+        {% for var in loop_queries %}
+        
+        <li style="font-size: 30px; list-style-type:none;"><a href="/display/{{var.id}}" >{{var.title}}</a> </li>
+        <br>
+          
+        <li style="list-style-type:none;"></li>{{var.blog}}</li>
+        <br>
+        <br>
+        <br>
         {% endfor %}
         
     </ul>

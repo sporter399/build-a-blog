@@ -43,7 +43,7 @@ def addconfirm():
 
       return render_template('addconfirm.html', title=title, blog=blog)       
 
-@app.route('/display/<int:post_id>', methods=['POST', 'GET'])#this still doesn't look that good right now
+@app.route('/display/<int:post_id>', methods=['POST', 'GET'])
 def display(post_id):
 
       display_list = []
