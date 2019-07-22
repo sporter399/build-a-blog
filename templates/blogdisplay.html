@@ -7,7 +7,12 @@
         
 {% for cat in display_list %}
               
-        <li style="list-style-type:none;">{{cat.title, cat.blog}}</li>
+        <li style="list-style-type:none;">{{cat.title}}</li>
+
+        </hr>   
+
+        <li style="list-style-type:none;">{{cat.blog}}</li>
+
         {% endfor %}
 
 {% endblock %}

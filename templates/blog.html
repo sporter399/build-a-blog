@@ -10,9 +10,7 @@
   
     
         {% for frog in loop_queries %}
-        <li style="list-style-type:none;"><a href="/display/{{frog.id}}">{{frog.title}}</a> {{frog.blog}}
-            
-        </li>
+        <li style="list-style-type:none;"><a href="/display/{{frog.id}}">{{frog.title}}</a> {{frog.blog}}</li>
         {% endfor %}
         
     </ul>
